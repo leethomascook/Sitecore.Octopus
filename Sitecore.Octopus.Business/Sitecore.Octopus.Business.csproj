@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{408DA4A4-B15B-4F13-838B-7E76BF1C96CB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sitecore.Octopus.Business</RootNamespace>
+    <AssemblyName>Sitecore.Octopus.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Atlassian.Jira">
+      <HintPath>..\packages\Atlassian.SDK.3.0.0-beta1\lib\Atlassian.Jira.dll</HintPath>
+    </Reference>
+    <Reference Include="DropNet">
+      <HintPath>..\packages\DropNet.1.9.6\lib\net40\DropNet.dll</HintPath>
+    </Reference>
+    <Reference Include="EasyHttp">
+      <HintPath>..\packages\EasyHttp.1.6.1.0\lib\net40\EasyHttp.dll</HintPath>
+    </Reference>
+    <Reference Include="JsonFx">
+      <HintPath>..\packages\JsonFx.2.0.1209.2802\lib\net40\JsonFx.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Octokit">
+      <HintPath>..\packages\Octokit.0.4.1\lib\net45\Octokit.dll</HintPath>
+    </Reference>
+    <Reference Include="Octopus.Client">
+      <HintPath>..\packages\Octopus.Client.2.4.9.167\lib\net40\Octopus.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Octopus.Platform">
+      <HintPath>..\packages\Octopus.Client.2.4.9.167\lib\net40\Octopus.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.3.4.1\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Kernel">
+      <HintPath>..\SitecoreLibs\Sitecore.Kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Logging">
+      <HintPath>..\SitecoreLibs\Sitecore.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Update">
+      <HintPath>..\SitecoreLibs\Sitecore.Update.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Zip">
+      <HintPath>..\SitecoreLibs\Sitecore.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Sprache">
+      <HintPath>..\packages\Sprache.1.10.0.36\lib\net40\Sprache.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TeamCitySharp">
+      <HintPath>..\packages\TeamCitySharp.0.3.5\lib\net40\TeamCitySharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArgumentProcessor.cs" />
+    <Compile Include="ArtifactMover.cs" />
+    <Compile Include="ContentPackageGenerator.cs" />
+    <Compile Include="Contracts\IArtifactRepository.cs" />
+    <Compile Include="Contracts\IDropBoxSettings.cs" />
+    <Compile Include="Contracts\IJiraSettings.cs" />
+    <Compile Include="Contracts\ItemsToDeleteSettings.cs" />
+    <Compile Include="Domain\ArtifactDetails.cs" />
+    <Compile Include="Domain\ItemToPublish.cs" />
+    <Compile Include="PublishableItemsGenerator.cs" />
+    <Compile Include="Domain\OctopusDeployVersion.cs" />
+    <Compile Include="ReleaseNoteFileCreator.cs" />
+    <Compile Include="ReleaseNotesGenerator.cs" />
+    <Compile Include="Services\DropBoxService.cs" />
+    <Compile Include="Settings\DropBoxSettings.cs" />
+    <Compile Include="Settings\ItemsToDeleteSettings.cs" />
+    <Compile Include="Settings\JiraSettings.cs" />
+    <Compile Include="Services\JiraService.cs" />
+    <Compile Include="Domain\Commit.cs" />
+    <Compile Include="Contracts\IJiraService.cs" />
+    <Compile Include="Domain\Issue.cs" />
+    <Compile Include="Settings\GitSettings.cs" />
+    <Compile Include="Contracts\IGitSettings.cs" />
+    <Compile Include="Contracts\IOctopusDeployService.cs" />
+    <Compile Include="Contracts\IOctopusDeploySettings.cs" />
+    <Compile Include="Contracts\ISitecoreSerilizationDiffGenerator.cs" />
+    <Compile Include="Contracts\ISourceControlService.cs" />
+    <Compile Include="PackageGenerator\SitecoreSerilizationDiffGenerator.cs" />
+    <Compile Include="PackageGenerator\SitecoreContentPackageGenerator.cs" />
+    <Compile Include="Services\GitHubService.cs" />
+    <Compile Include="Settings\OctopusDeploySettings.cs" />
+    <Compile Include="Services\OctopusDeployService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stratergies\BasicBuildIdToTagNameStratergy.cs" />
+    <Compile Include="Stratergies\BasicOctopusToTeamcityMappingStratergy.cs" />
+    <Compile Include="Stratergies\IBuildIdToTagNameStratergy.cs" />
+    <Compile Include="Stratergies\IOctopusToTeamcityMappingStratergy.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <EmbeddedResource Include="Templates\ReleaseNotes.cshtml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

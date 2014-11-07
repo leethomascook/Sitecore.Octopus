@@ -1,0 +1,14 @@
+
+Release Notes:
+
+Jira Issues Resolved since last release:
+<ul>
+<li>7/27/2014 DIG-3 leec As an admin
+I want to be able to login to the CMS admin panel
+So I can populate content</li><li>1/18/2014 DIG-1 leec As a business
+I want all API requests restricted
+So I can protect my intellectual property</li></ul>
+
+Source control commits since last release:
+<ul>
+</ul>

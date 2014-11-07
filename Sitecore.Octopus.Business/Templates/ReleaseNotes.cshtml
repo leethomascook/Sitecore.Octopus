@@ -1,0 +1,35 @@
+﻿
+@model Sitecore.Octopus.Business.ReleaseNotesModel
+Release Notes:
+
+Jira Issues Resolved since last release:
+<ul>
+    @foreach (var issue in Model.Issues)
+    {
+        @Raw("<li>")
+        @issue.DateResolved.ToShortDateString()
+        @Raw(" ")
+        @issue.IssueNumber
+        @Raw(" ")
+        @issue.Reporter
+        @Raw(" ")
+        @issue.Description
+        @Raw("</li>")
+
+    }
+</ul>
+
+Source control commits since last release:
+<ul>
+    @foreach (var commit in Model.Commits)
+    {
+        @Raw("<li>")
+        @commit.CommitId
+        @Raw(" ")
+        @commit.Authour
+        @Raw(" ")
+        @commit.Message
+        @Raw("</li>")
+
+    }
+</ul>
