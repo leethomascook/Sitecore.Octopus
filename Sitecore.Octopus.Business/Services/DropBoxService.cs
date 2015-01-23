@@ -17,7 +17,7 @@ namespace Sitecore.Octopus.Business.Services
 
         public const string ZIP_FILE_NAME = "Serilization.zip";
 
-        public string DownloadSerilizationAsset(string tagName)
+        public string DownloadSerializationAsset(string tagName)
         {
             var client = new DropNetClient(_dropBoxSettings.ApiKey, _dropBoxSettings.ApiSecret, _dropBoxSettings.UserToken, _dropBoxSettings.UserSecret);
             client.UseSandbox = true;
@@ -29,7 +29,7 @@ namespace Sitecore.Octopus.Business.Services
             return tempFile;
         }
 
-        public void CreateSerilizationAsset(string tagName, string folderPath)
+        public void CreateSerializationAsset(string tagName, string folderPath)
         {
             var client = new DropNetClient(_dropBoxSettings.ApiKey, _dropBoxSettings.ApiSecret, _dropBoxSettings.UserToken, _dropBoxSettings.UserSecret);
             client.UseSandbox = true;

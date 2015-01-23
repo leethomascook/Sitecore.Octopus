@@ -12,7 +12,7 @@ namespace Sitecore.Octopus.Business.Tests
         [Test]
         public void ReleaseNotesGenerator_CreatesAFileContaingReleaseNotes()
         {
-            var generator = new ReleaseNotesGenerator(new BasicOctopusToTeamcityMappingStratergy(), new OctopusDeployService(new OctopusDeploySettings()), new OctopusDeploySettings(), new BasicBuildIdToTagNameStratergy(), new GitHubService(new GitSettings()), new JiraService(new JiraSettings())  );
+            var generator = new ReleaseNotesGenerator(new BasicOctopusToTeamcityMappingStrategy(), new OctopusDeployService(new OctopusDeploySettings()), new OctopusDeploySettings(), new BasicBuildIdToTagNameStratergy(), new GitHubService(new GitSettings()), new JiraService(new JiraSettings())  );
             var releaseNotesFilePath = generator.CreateReleaseNotes("3dd8fb2");
             Assert.IsTrue(File.Exists(releaseNotesFilePath)); 
         }

@@ -1,6 +1,6 @@
 ﻿namespace Sitecore.Octopus.Business.Stratergies
 {
-    public interface IOctopusToTeamcityMappingStratergy
+    public interface IOctopusToTeamcityMappingStrategy
     {
         string GetTeamCityBuildNumberFromOctopusReleaseNumber(string releaseNumber);
     }

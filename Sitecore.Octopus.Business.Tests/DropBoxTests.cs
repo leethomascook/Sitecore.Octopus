@@ -20,7 +20,7 @@ namespace Sitecore.Octopus.Business.Tests
             settings.SetupGet(x => x.UserToken).Returns("xxx");
             var service = new DropBoxService(settings.Object);
 
-            service.CreateSerilizationAsset("tag-name", "SerliazedItems\\Added");
+            service.CreateSerializationAsset("tag-name", "SerliazedItems\\Added");
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace Sitecore.Octopus.Business.Tests
             settings.SetupGet(x => x.UserToken).Returns("xx");
             var service = new DropBoxService(settings.Object);
 
-            service.DownloadSerilizationAsset("v2770");
+            service.DownloadSerializationAsset("v2770");
 
             Assert.IsTrue(System.IO.File.Exists(Directory.GetCurrentDirectory() + "\\" + DropBoxService.ZIP_FILE_NAME));
         }

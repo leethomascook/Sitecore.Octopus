@@ -9,7 +9,7 @@ namespace Sitecore.Octopus.Business.Tests
         [Test]
         public void BasicOctopusToTeamcityMappingStratergy_RemovesFirstTwoCharactersofReleaseNumber()
         {
-            var stratergy = new BasicOctopusToTeamcityMappingStratergy();
+            var stratergy = new BasicOctopusToTeamcityMappingStrategy();
 
             var buildId = stratergy.GetTeamCityBuildNumberFromOctopusReleaseNumber("1.1");
 
@@ -19,7 +19,7 @@ namespace Sitecore.Octopus.Business.Tests
         [Test]
         public void BasicOctopusToTeamcityMappingStratergy_RemovesFirstTwoCharactersofReleaseNumber_WhenMultipleDeciamlPlaces()
         {
-            var stratergy = new BasicOctopusToTeamcityMappingStratergy();
+            var stratergy = new BasicOctopusToTeamcityMappingStrategy();
 
             var buildId = stratergy.GetTeamCityBuildNumberFromOctopusReleaseNumber("1.1.2.3");
 

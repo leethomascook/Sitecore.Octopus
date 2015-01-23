@@ -30,10 +30,10 @@ namespace Sitecore.Octopus.Business
             var version = _octopusDeployService.FindCurrentlyDeployedProductionVersion(_octopusDeploySettings.ProjectName, _octopusDeploySettings.EnvironmentName);
 
             //Step 2. Get Production Build Number From TC
-            var buildNumber = new BasicOctopusToTeamcityMappingStratergy().GetTeamCityBuildNumberFromOctopusReleaseNumber(version.VersionNumber);
+            var buildNumber = new BasicOctopusToTeamcityMappingStrategy().GetTeamCityBuildNumberFromOctopusReleaseNumber(version.VersionNumber);
 
             //Step 3. Get Serlization folder that you have stored as an artifact
-            var sourceZip = _artifactRepository.DownloadSerilizationAsset("v" + buildNumber);
+            var sourceZip = _artifactRepository.DownloadSerializationAsset("v" + buildNumber);
             var sourcePath = Directory.GetCurrentDirectory() + "\\ExtractedZip";
 
             if (Directory.Exists(sourcePath))
@@ -42,7 +42,7 @@ namespace Sitecore.Octopus.Business
             }
 
             Directory.CreateDirectory(sourcePath);
-         
+
             ZipFile.ExtractToDirectory(sourceZip, sourcePath);
 
             //Step 4. Generate content package via Diff based on the old serlization  compared to new one (Courier!)
@@ -51,11 +51,11 @@ namespace Sitecore.Octopus.Business
             var packageGenerator = new SitecoreContentPackageGenerator(new SitecoreSerilizationDiffGenerator(new ItemsToDeleteSettings()));
             var artifactDetails = packageGenerator.CreateArtifacts(sourcePath, currentSerilizationFolder);
 
-            _artifactRepository.CreateSerilizationAsset("v" + currentBuildNumber, currentSerilizationFolder);
+            _artifactRepository.CreateSerializationAsset("v" + currentBuildNumber, currentSerilizationFolder);
 
             return artifactDetails;
         }
 
-       
+
     }
 }

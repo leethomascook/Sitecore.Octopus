@@ -7,16 +7,16 @@ namespace Sitecore.Octopus.Business
 {
     public class ReleaseNotesGenerator
     {
-        private readonly IOctopusToTeamcityMappingStratergy _octopusToTeamcityMappingStratergy;
+        private readonly IOctopusToTeamcityMappingStrategy _octopusToTeamcityMappingStrategy;
         private readonly IOctopusDeployService _octopusDeployService;
         private readonly IOctopusDeploySettings _octopusDeploySettings;
         private readonly IBuildIdToTagNameStratergy _buildIdToTagNameStratergy;
         private readonly ISourceControlService _sourceControlService;
         private readonly IBugTrackingService _bugTrackingService;
 
-        public ReleaseNotesGenerator(IOctopusToTeamcityMappingStratergy octopusToTeamcityMappingStratergy, IOctopusDeployService octopusDeployService, IOctopusDeploySettings octopusDeploySettings, IBuildIdToTagNameStratergy buildIdToTagNameStratergy, ISourceControlService sourceControlService, IBugTrackingService bugTrackingService)
+        public ReleaseNotesGenerator(IOctopusToTeamcityMappingStrategy octopusToTeamcityMappingStrategy, IOctopusDeployService octopusDeployService, IOctopusDeploySettings octopusDeploySettings, IBuildIdToTagNameStratergy buildIdToTagNameStratergy, ISourceControlService sourceControlService, IBugTrackingService bugTrackingService)
         {
-            _octopusToTeamcityMappingStratergy = octopusToTeamcityMappingStratergy;
+            _octopusToTeamcityMappingStrategy = octopusToTeamcityMappingStrategy;
             _octopusDeployService = octopusDeployService;
             _octopusDeploySettings = octopusDeploySettings;
             _buildIdToTagNameStratergy = buildIdToTagNameStratergy;
@@ -30,7 +30,7 @@ namespace Sitecore.Octopus.Business
             var octopusDeployVersion = _octopusDeployService.FindCurrentlyDeployedProductionVersion(_octopusDeploySettings.ProjectName, _octopusDeploySettings.EnvironmentName);
 
             //Step 2. Get Build Number From TC
-            var buildNumber = _octopusToTeamcityMappingStratergy.GetTeamCityBuildNumberFromOctopusReleaseNumber(octopusDeployVersion.VersionNumber);
+            var buildNumber = _octopusToTeamcityMappingStrategy.GetTeamCityBuildNumberFromOctopusReleaseNumber(octopusDeployVersion.VersionNumber);
 
             // Step 3. Get tag label
             var tagLabel = _buildIdToTagNameStratergy.GetTagName(buildNumber);

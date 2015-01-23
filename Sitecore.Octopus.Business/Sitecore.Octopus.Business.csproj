@@ -64,16 +64,16 @@
       <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Kernel">
-      <HintPath>..\SitecoreLibs\Sitecore.Kernel.dll</HintPath>
+      <HintPath>..\..\..\Projects\Trafalgar\lib\Sitecore 7.2 rev. 140526\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Logging">
-      <HintPath>..\SitecoreLibs\Sitecore.Logging.dll</HintPath>
+      <HintPath>..\..\..\Projects\Trafalgar\lib\Sitecore 7.2 rev. 140526\Sitecore.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Update">
-      <HintPath>..\SitecoreLibs\Sitecore.Update.dll</HintPath>
+      <HintPath>..\..\..\Projects\Trafalgar\lib\Sitecore 7.2 rev. 140526\Sitecore.Update.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Zip">
-      <HintPath>..\SitecoreLibs\Sitecore.Zip.dll</HintPath>
+      <HintPath>..\..\..\Projects\Trafalgar\lib\Sitecore 7.2 rev. 140526\Sitecore.Zip.dll</HintPath>
     </Reference>
     <Reference Include="Sprache">
       <HintPath>..\packages\Sprache.1.10.0.36\lib\net40\Sprache.dll</HintPath>
@@ -133,9 +133,9 @@
     <Compile Include="Services\OctopusDeployService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stratergies\BasicBuildIdToTagNameStratergy.cs" />
-    <Compile Include="Stratergies\BasicOctopusToTeamcityMappingStratergy.cs" />
+    <Compile Include="Stratergies\BasicOctopusToTeamcityMappingStrategy.cs" />
     <Compile Include="Stratergies\IBuildIdToTagNameStratergy.cs" />
-    <Compile Include="Stratergies\IOctopusToTeamcityMappingStratergy.cs" />
+    <Compile Include="Stratergies\IOctopusToTeamcityMappingStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
