@@ -2,7 +2,7 @@
 {
     public interface IArtifactRepository
     {
-        string DownloadSerilizationAsset(string tagName);
-        void CreateSerilizationAsset(string tagName, string folderPath);
+        string DownloadSerializationAsset(string tagName);
+        void CreateSerializationAsset(string tagName, string folderPath);
     }
 }

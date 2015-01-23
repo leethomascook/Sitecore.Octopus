@@ -43,6 +43,9 @@
     <Reference Include="JsonFx">
       <HintPath>..\packages\JsonFx.2.0.1209.2802\lib\net40\JsonFx.dll</HintPath>
     </Reference>
+    <Reference Include="NDesk.Options">
+      <HintPath>..\packages\NDesk.Options.0.2.1\lib\NDesk.Options.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -64,16 +67,16 @@
       <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Kernel">
-      <HintPath>..\SitecoreLibs\Sitecore.Kernel.dll</HintPath>
+      <HintPath>..\..\..\Projects\Trafalgar\lib\Sitecore 7.2 rev. 140526\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Logging">
-      <HintPath>..\SitecoreLibs\Sitecore.Logging.dll</HintPath>
+      <HintPath>..\..\..\Projects\Trafalgar\lib\Sitecore 7.2 rev. 140526\Sitecore.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Update">
-      <HintPath>..\SitecoreLibs\Sitecore.Update.dll</HintPath>
+      <HintPath>..\..\..\Projects\Trafalgar\lib\Sitecore 7.2 rev. 140526\Sitecore.Update.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Zip">
-      <HintPath>..\SitecoreLibs\Sitecore.Zip.dll</HintPath>
+      <HintPath>..\..\..\Projects\Trafalgar\lib\Sitecore 7.2 rev. 140526\Sitecore.Zip.dll</HintPath>
     </Reference>
     <Reference Include="Sprache">
       <HintPath>..\packages\Sprache.1.10.0.36\lib\net40\Sprache.dll</HintPath>
@@ -124,20 +127,21 @@
     <Compile Include="Contracts\IGitSettings.cs" />
     <Compile Include="Contracts\IOctopusDeployService.cs" />
     <Compile Include="Contracts\IOctopusDeploySettings.cs" />
-    <Compile Include="Contracts\ISitecoreSerilizationDiffGenerator.cs" />
+    <Compile Include="Contracts\ISitecoreSerializationDiffGenerator.cs" />
     <Compile Include="Contracts\ISourceControlService.cs" />
-    <Compile Include="PackageGenerator\SitecoreSerilizationDiffGenerator.cs" />
+    <Compile Include="PackageGenerator\SitecoreSerializationDiffGenerator.cs" />
     <Compile Include="PackageGenerator\SitecoreContentPackageGenerator.cs" />
     <Compile Include="Services\GitHubService.cs" />
     <Compile Include="Settings\OctopusDeploySettings.cs" />
     <Compile Include="Services\OctopusDeployService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stratergies\BasicBuildIdToTagNameStratergy.cs" />
-    <Compile Include="Stratergies\BasicOctopusToTeamcityMappingStratergy.cs" />
+    <Compile Include="Stratergies\BasicOctopusToTeamcityMappingStrategy.cs" />
     <Compile Include="Stratergies\IBuildIdToTagNameStratergy.cs" />
-    <Compile Include="Stratergies\IOctopusToTeamcityMappingStratergy.cs" />
+    <Compile Include="Stratergies\IOctopusToTeamcityMappingStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Templates\ReleaseNotes.cshtml" />
   </ItemGroup>

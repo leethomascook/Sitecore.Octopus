@@ -10,7 +10,7 @@ namespace Sitecore.Octopus.Business.Tests
         {
             var processor = new ArgumentProcessor(new[] { "Data", "", "", "" });
             
-            Assert.AreEqual("Data", processor.SerilizationFolder);
+            Assert.AreEqual("Data", processor.SerializationFolder);
         }
 
 
