@@ -124,9 +124,9 @@
     <Compile Include="Contracts\IGitSettings.cs" />
     <Compile Include="Contracts\IOctopusDeployService.cs" />
     <Compile Include="Contracts\IOctopusDeploySettings.cs" />
-    <Compile Include="Contracts\ISitecoreSerilizationDiffGenerator.cs" />
+    <Compile Include="Contracts\ISitecoreSerializationDiffGenerator.cs" />
     <Compile Include="Contracts\ISourceControlService.cs" />
-    <Compile Include="PackageGenerator\SitecoreSerilizationDiffGenerator.cs" />
+    <Compile Include="PackageGenerator\SitecoreSerializationDiffGenerator.cs" />
     <Compile Include="PackageGenerator\SitecoreContentPackageGenerator.cs" />
     <Compile Include="Services\GitHubService.cs" />
     <Compile Include="Settings\OctopusDeploySettings.cs" />

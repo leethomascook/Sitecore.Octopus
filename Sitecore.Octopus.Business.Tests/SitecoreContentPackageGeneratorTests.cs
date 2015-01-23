@@ -10,7 +10,7 @@ namespace Sitecore.Octopus.Business.Tests
         [Test]
         public void ContentPackageGenerator_CreatesContentPackage()
         {
-            var generator = new ContentPackageGenerator(new GitHubService(new GitSettings()), new OctopusDeployService(new OctopusDeploySettings()), new OctopusDeploySettings(), new DropBoxService(new DropBoxSettings()));
+            var generator = new ContentPackageGenerator(new OctopusDeployService(new OctopusDeploySettings()), new OctopusDeploySettings(), new DropBoxService(new DropBoxSettings()));
             var artifactDetails = generator.CreatePackage("C:\\Projects\\Sitecore.Octopus\\data\\currentserialization", "00");
 
             Assert.AreEqual("GeneratedContentPackage.update", artifactDetails.ContentPackageFilePath);
@@ -20,7 +20,7 @@ namespace Sitecore.Octopus.Business.Tests
         [Test]
         public void ContentPackageGenerator_CreatesItemToPublishJsonFile()
         {
-            var generator = new ContentPackageGenerator(new GitHubService(new GitSettings()), new OctopusDeployService(new OctopusDeploySettings()), new OctopusDeploySettings(), new DropBoxService(new DropBoxSettings()));
+            var generator = new ContentPackageGenerator(new OctopusDeployService(new OctopusDeploySettings()), new OctopusDeploySettings(), new DropBoxService(new DropBoxSettings()));
             var artifactDetails = generator.CreatePackage("C:\\Projects\\Sitecore.Octopus\\data\\currentserialization", "00");
 
             Assert.AreEqual("ItemsToPublish.json", artifactDetails.ItemsToPublishFilePath);

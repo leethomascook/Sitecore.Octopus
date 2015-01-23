@@ -10,8 +10,11 @@ namespace Sitecore.Octopus.ContentPackageGenerator
         static void Main(string[] args)
         {
             var argumentProcessor = new ArgumentProcessor(args);
-            var contentPackageGenerator = new Business.ContentPackageGenerator(new GitHubService(new GitSettings()), new OctopusDeployService(new OctopusDeploySettings()), new OctopusDeploySettings(), new DropBoxService(new DropBoxSettings()));
-            var artifactDetails = contentPackageGenerator.CreatePackage(argumentProcessor.SerializationFolder, argumentProcessor.CurrentBuildId);
+            var contentPackageGenerator = new Business.ContentPackageGenerator(
+                new OctopusDeployService(new OctopusDeploySettings()), new OctopusDeploySettings(),
+                new DropBoxService(new DropBoxSettings()));
+            var artifactDetails = contentPackageGenerator.CreatePackage(argumentProcessor.SerializationFolder,
+                argumentProcessor.CurrentBuildId, argumentProcessor.OutputPath);
 
             var releaseNotesGenereator = new ReleaseNotesGenerator(new BasicOctopusToTeamcityMappingStrategy(), new OctopusDeployService(new OctopusDeploySettings()), new OctopusDeploySettings(), new BasicBuildIdToTagNameStratergy(), new GitHubService(new GitSettings()), new JiraService(new JiraSettings()));
             var releaseNotesFilePath = releaseNotesGenereator.CreateReleaseNotes(argumentProcessor.CurrentCommitId);

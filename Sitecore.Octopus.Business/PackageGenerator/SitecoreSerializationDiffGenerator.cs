@@ -9,53 +9,42 @@ using Sitecore.Update.Interfaces;
 namespace Sitecore.Octopus.Business.PackageGenerator
 {
     /* This is stolen from sitecore Courier.  */
-    public class SitecoreSerilizationDiffGenerator : ISitecoreSerilizationDiffGenerator
+    public class SitecoreSerializationDiffGenerator : ISitecoreSerializationDiffGenerator
     {
         private readonly IItemsToDeleteSettings _itemsToDeleteSettings;
 
-        public SitecoreSerilizationDiffGenerator(IItemsToDeleteSettings itemsToDeleteSettings)
+        public SitecoreSerializationDiffGenerator(IItemsToDeleteSettings itemsToDeleteSettings)
         {
             _itemsToDeleteSettings = itemsToDeleteSettings;
-        }
-
-        private void DeleteDirectory(string target_dir)
-        {
-            string[] files = Directory.GetFiles(target_dir);
-            string[] dirs = Directory.GetDirectories(target_dir);
-
-            foreach (string file in files)
-            {
-                File.SetAttributes(file, FileAttributes.Normal);
-                File.Delete(file);
-            }
-
-            foreach (string dir in dirs)
-            {
-                DeleteDirectory(dir);
-            }
-
-            Directory.Delete(target_dir, false);
         }
 
         private void RemoveUnWantedItems(string sourcePath)
         {
             foreach (var path in _itemsToDeleteSettings.PathsToRemove)
             {
+                var targetDir = string.Concat(sourcePath, path);
                 try
                 {
-                    Console.WriteLine("About to delete: " + string.Concat(sourcePath, path));
-                    DeleteDirectory(string.Concat(sourcePath, path));
+                    if (Directory.Exists(targetDir))
+                    {
+                        Console.WriteLine("About to delete: " + targetDir);
+                        Directory.Delete(targetDir, true);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Skipping: " + targetDir);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error delete this folder" + string.Concat(sourcePath, path) + " ------" + ex);
+                    Console.WriteLine("Error deleting: " + targetDir + "\r\n ------" + ex);
                 }
             }
         }
 
         public List<ICommand> GetDiffCommands(string sourcePath, string targetPath)
         {
-            Console.WriteLine("The source path is: " + sourcePath); 
+            Console.WriteLine("The source path is: " + sourcePath);
             Console.WriteLine("The Target path is: " + targetPath);
             RemoveUnWantedItems(sourcePath);
             RemoveUnWantedItems(targetPath);
@@ -65,8 +54,8 @@ namespace Sitecore.Octopus.Business.PackageGenerator
 
             sourceManager.SerializationPath = sourcePath;
             targetManager.SerializationPath = targetPath;
-            IDataIterator sourceDataIterator = sourceManager.ItemIterator;
-            IDataIterator targetDataIterator = targetManager.ItemIterator;
+            var sourceDataIterator = sourceManager.ItemIterator;
+            var targetDataIterator = targetManager.ItemIterator;
 
             var engine = new DataEngine();
 
@@ -79,12 +68,12 @@ namespace Sitecore.Octopus.Business.PackageGenerator
         private IEnumerable<ICommand> GenerateDiff(IDataIterator sourceIterator, IDataIterator targetIterator)
         {
             var commands = new List<ICommand>();
-            IDataItem sourceDataItem = sourceIterator.Next();
-            IDataItem targetDataItem = targetIterator.Next();
+            var sourceDataItem = sourceIterator.Next();
+            var targetDataItem = targetIterator.Next();
 
             while (sourceDataItem != null || targetDataItem != null)
             {
-                int compareResult = Compare(sourceDataItem, targetDataItem);
+                var compareResult = Compare(sourceDataItem, targetDataItem);
                 commands.AddRange((sourceDataItem ?? targetDataItem).GenerateDiff(sourceDataItem, targetDataItem, compareResult));
                 if (compareResult < 0)
                 {

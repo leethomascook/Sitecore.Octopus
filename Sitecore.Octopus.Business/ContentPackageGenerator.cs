@@ -10,21 +10,19 @@ namespace Sitecore.Octopus.Business
 {
     public class ContentPackageGenerator
     {
-        private readonly ISourceControlService _sourceControlService;
         private readonly IOctopusDeployService _octopusDeployService;
         private readonly IOctopusDeploySettings _octopusDeploySettings;
         private readonly IArtifactRepository _artifactRepository;
 
 
-        public ContentPackageGenerator(ISourceControlService sourceControlService, IOctopusDeployService octopusDeployService, IOctopusDeploySettings octopusDeploySettings, IArtifactRepository artifactRepository)
+        public ContentPackageGenerator(IOctopusDeployService octopusDeployService, IOctopusDeploySettings octopusDeploySettings, IArtifactRepository artifactRepository)
         {
-            _sourceControlService = sourceControlService;
             _octopusDeployService = octopusDeployService;
             _octopusDeploySettings = octopusDeploySettings;
             _artifactRepository = artifactRepository;
         }
 
-        public ArtifactDetails CreatePackage(string currentSerilizationFolder, string currentBuildNumber)
+        public ArtifactDetails CreatePackage(string currentSerializationFolder, string currentBuildNumber, string sourcePath = null)
         {
             //Step 1. Get Current Production Release Number from OD
             var version = _octopusDeployService.FindCurrentlyDeployedProductionVersion(_octopusDeploySettings.ProjectName, _octopusDeploySettings.EnvironmentName);
@@ -34,7 +32,8 @@ namespace Sitecore.Octopus.Business
 
             //Step 3. Get Serlization folder that you have stored as an artifact
             var sourceZip = _artifactRepository.DownloadSerializationAsset("v" + buildNumber);
-            var sourcePath = Directory.GetCurrentDirectory() + "\\ExtractedZip";
+            if (string.IsNullOrEmpty(sourcePath))
+                sourcePath = Directory.GetCurrentDirectory() + "\\ExtractedZip";
 
             if (Directory.Exists(sourcePath))
             {
@@ -48,10 +47,10 @@ namespace Sitecore.Octopus.Business
             //Step 4. Generate content package via Diff based on the old serlization  compared to new one (Courier!)
             //Step 5. Generate ItemsToPublish.json for Sitecore.Ship
 
-            var packageGenerator = new SitecoreContentPackageGenerator(new SitecoreSerilizationDiffGenerator(new ItemsToDeleteSettings()));
-            var artifactDetails = packageGenerator.CreateArtifacts(sourcePath, currentSerilizationFolder);
+            var packageGenerator = new SitecoreContentPackageGenerator(new SitecoreSerializationDiffGenerator(new ItemsToDeleteSettings()));
+            var artifactDetails = packageGenerator.CreateArtifacts(sourcePath + "serialization\\", currentSerializationFolder);
 
-            _artifactRepository.CreateSerializationAsset("v" + currentBuildNumber, currentSerilizationFolder);
+            _artifactRepository.CreateSerializationAsset("v" + currentBuildNumber, currentSerializationFolder);
 
             return artifactDetails;
         }

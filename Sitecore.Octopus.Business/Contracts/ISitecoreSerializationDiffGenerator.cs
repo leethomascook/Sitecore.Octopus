@@ -3,7 +3,7 @@ using Sitecore.Update.Interfaces;
 
 namespace Sitecore.Octopus.Business.Contracts
 {
-    public interface ISitecoreSerilizationDiffGenerator
+    public interface ISitecoreSerializationDiffGenerator
     {
         List<ICommand> GetDiffCommands(string sourcePath, string targetPath);
     }
