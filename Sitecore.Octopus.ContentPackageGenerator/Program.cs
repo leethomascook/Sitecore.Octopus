@@ -14,7 +14,7 @@ namespace Sitecore.Octopus.ContentPackageGenerator
                 new OctopusDeployService(new OctopusDeploySettings()), new OctopusDeploySettings(),
                 new DropBoxService(new DropBoxSettings()));
             var artifactDetails = contentPackageGenerator.CreatePackage(argumentProcessor.SerializationFolder,
-                argumentProcessor.CurrentBuildId, argumentProcessor.OutputPath);
+                argumentProcessor.CurrentBuildId, argumentProcessor.ExtractPath);
 
             var releaseNotesGenereator = new ReleaseNotesGenerator(new BasicOctopusToTeamcityMappingStrategy(), new OctopusDeployService(new OctopusDeploySettings()), new OctopusDeploySettings(), new BasicBuildIdToTagNameStratergy(), new GitHubService(new GitSettings()), new JiraService(new JiraSettings()));
             var releaseNotesFilePath = releaseNotesGenereator.CreateReleaseNotes(argumentProcessor.CurrentCommitId);
