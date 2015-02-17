@@ -21,19 +21,11 @@ namespace Sitecore.Octopus.Business.Settings
             }
         }
 
-        public string UserSecret
+        public string AccessToken
         {
             get
             {
-                return ConfigurationManager.AppSettings.Get("DropBox.UserSecret");
-            }
-        }
-
-        public string UserToken
-        {
-            get
-            {
-                return ConfigurationManager.AppSettings.Get("DropBox.UserToken");
+                return ConfigurationManager.AppSettings.Get("DropBox.AccessToken");
             }
         }
     }

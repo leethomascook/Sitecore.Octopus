@@ -19,7 +19,7 @@ namespace Sitecore.Octopus.Business.Services
 
         public string DownloadSerializationAsset(string tagName)
         {
-            var client = new DropNetClient(_dropBoxSettings.ApiKey, _dropBoxSettings.ApiSecret, _dropBoxSettings.UserToken, _dropBoxSettings.UserSecret);
+            var client = new DropNetClient(_dropBoxSettings.ApiKey, _dropBoxSettings.ApiSecret, _dropBoxSettings.AccessToken);
             client.UseSandbox = true;
             string artifactPath = String.Format("/Artifacts/{0}/{1}", tagName, ZIP_FILE_NAME);
             var file = client.GetFile(artifactPath);
@@ -31,7 +31,7 @@ namespace Sitecore.Octopus.Business.Services
 
         public void CreateSerializationAsset(string tagName, string folderPath)
         {
-            var client = new DropNetClient(_dropBoxSettings.ApiKey, _dropBoxSettings.ApiSecret, _dropBoxSettings.UserToken, _dropBoxSettings.UserSecret);
+            var client = new DropNetClient(_dropBoxSettings.ApiKey, _dropBoxSettings.ApiSecret, _dropBoxSettings.AccessToken);
             client.UseSandbox = true;
            File.Delete(ZIP_FILE_NAME);
            ZipFile.CreateFromDirectory(folderPath, ZIP_FILE_NAME, CompressionLevel.Fastest, true);

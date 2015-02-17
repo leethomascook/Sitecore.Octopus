@@ -16,8 +16,7 @@ namespace Sitecore.Octopus.Business.Tests
             var settings = new Mock<IDropBoxSettings>();
             settings.SetupGet(x => x.ApiKey).Returns("xx");
             settings.SetupGet(x => x.ApiSecret).Returns("xx");
-            settings.SetupGet(x => x.UserSecret).Returns("xx");
-            settings.SetupGet(x => x.UserToken).Returns("xxx");
+            settings.SetupGet(x => x.AccessToken).Returns("xx");
             var service = new DropBoxService(settings.Object);
 
             service.CreateSerializationAsset("tag-name", "SerliazedItems\\Added");
@@ -29,8 +28,7 @@ namespace Sitecore.Octopus.Business.Tests
             var settings = new Mock<IDropBoxSettings>();
             settings.SetupGet(x => x.ApiKey).Returns("xx");
             settings.SetupGet(x => x.ApiSecret).Returns("xx");
-            settings.SetupGet(x => x.UserSecret).Returns("xx");
-            settings.SetupGet(x => x.UserToken).Returns("xx");
+            settings.SetupGet(x => x.AccessToken).Returns("xx");
             var service = new DropBoxService(settings.Object);
 
             service.DownloadSerializationAsset("v2770");
