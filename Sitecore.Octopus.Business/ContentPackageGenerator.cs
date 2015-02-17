@@ -48,7 +48,7 @@ namespace Sitecore.Octopus.Business
             //Step 5. Generate ItemsToPublish.json for Sitecore.Ship
 
             var packageGenerator = new SitecoreContentPackageGenerator(new SitecoreSerializationDiffGenerator(new ItemsToDeleteSettings()));
-            var artifactDetails = packageGenerator.CreateArtifacts(sourcePath + "serialization\\", currentSerializationFolder);
+            var artifactDetails = packageGenerator.CreateArtifacts(sourcePath + "\\serialization\\", currentSerializationFolder);
 
             _artifactRepository.CreateSerializationAsset("v" + currentBuildNumber, currentSerializationFolder);
 

@@ -79,7 +79,6 @@
     <Compile Include="SitecoreContentPackageGeneratorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SitecoreSerilizationDiffGeneratorTests.cs" />
-    <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
