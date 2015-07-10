@@ -12,7 +12,7 @@ namespace Sitecore.Octopus.Business.PackageGenerator
     {
         private readonly ISitecoreSerilizationDiffGenerator _sitecoreSerilizationDiffGenerator;
         private readonly string PACKAGE_NAME = "GeneratedContentPackage.update";
-        private readonly string ITEM_TO_PUBLISH_FILE = "ItemsToPublish.json";
+   
 
         public SitecoreContentPackageGenerator(ISitecoreSerilizationDiffGenerator sitecoreSerilizationDiffGenerator)
         {
@@ -25,23 +25,37 @@ namespace Sitecore.Octopus.Business.PackageGenerator
             var diff = new DiffInfo(commands, "Sitecore Courier Package", string.Empty,  string.Format("Diff between folders '{0}' and '{1}'", sourcePath, targetPath));
             Update.Engine.PackageGenerator.GeneratePackage(diff, string.Empty, PACKAGE_NAME);
 
-            CreateItemsToPublishFile(commands);
+            var jsonFile = new ItemsToPublishGenerator().CreateItemsToPublishFile(commands);
 
             var artifactDetails = new ArtifactDetails()
             {
                 ContentPackageFilePath = PACKAGE_NAME,
-                ItemsToPublishFilePath = ITEM_TO_PUBLISH_FILE
+                ItemsToPublishFilePath = jsonFile
             };
 
             return artifactDetails;
         }
 
-        private void CreateItemsToPublishFile(IEnumerable<ICommand> commands)
+        public string CreateItemsToPublishFile(string sourcePath, string targetPath, string outputPath)
+        {
+            var commands = _sitecoreSerilizationDiffGenerator.GetDiffCommands(sourcePath, targetPath);
+            return new ItemsToPublishGenerator().CreateItemsToPublishFile(commands);
+        }
+
+    }
+
+    public class ItemsToPublishGenerator
+    {
+      
+        public string CreateItemsToPublishFile(IEnumerable<ICommand> commands, string filePath = "ItemsToPublish.json")
         {
             var publishableItemsGenerator = new PublishableItemsGenerator();
             var itemsToPublish = publishableItemsGenerator.FindItemsToPublishFromCommands(commands);
             var json = JsonConvert.SerializeObject(itemsToPublish);
-            File.WriteAllText(ITEM_TO_PUBLISH_FILE, json);
+            File.WriteAllText(filePath, json);
+            return filePath;
         }
+
+
     }
 }
