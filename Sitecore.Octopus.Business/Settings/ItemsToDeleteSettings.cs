@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using Sitecore.Octopus.Business.Contracts;
@@ -11,7 +12,14 @@ namespace Sitecore.Octopus.Business.Settings
         {
             get
             {
-                return ConfigurationManager.AppSettings.Get("ItemsToDelete.Paths").Split(',').ToList();
+                try
+                {
+                    return ConfigurationManager.AppSettings.Get("ItemsToDelete.Paths").Split(',').ToList();
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
             }
         }
     }

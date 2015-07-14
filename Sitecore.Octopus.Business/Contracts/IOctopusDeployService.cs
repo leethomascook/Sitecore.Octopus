@@ -5,6 +5,6 @@ namespace Sitecore.Octopus.Business.Contracts
 {
     public interface IOctopusDeployService
     {
-        OctopusDeployVersion FindCurrentlyDeployedProductionVersion(string projectName, string environmentName);
+        OctopusDeployVersion FindCurrentlyDeployedVersion(string projectName, string environmentName);
     }
 }

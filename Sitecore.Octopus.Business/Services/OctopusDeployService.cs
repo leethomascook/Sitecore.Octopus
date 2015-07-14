@@ -16,7 +16,7 @@ namespace Sitecore.Octopus.Business.Services
             _octopusDeploySettings = octopusDeploySettings;
         }
 
-        public OctopusDeployVersion FindCurrentlyDeployedProductionVersion(string projectName, string environmentName)
+        public OctopusDeployVersion FindCurrentlyDeployedVersion(string projectName, string environmentName)
         {
             var endpoint = new OctopusServerEndpoint(_octopusDeploySettings.SevrerUrl, _octopusDeploySettings.ApiKey);
             var repository = new OctopusRepository(endpoint);

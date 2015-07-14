@@ -27,7 +27,7 @@ namespace Sitecore.Octopus.Business
         public ArtifactDetails CreatePackage(string currentSerilizationFolder, string currentBuildNumber)
         {
             //Step 1. Get Current Production Release Number from OD
-            var version = _octopusDeployService.FindCurrentlyDeployedProductionVersion(_octopusDeploySettings.ProjectName, _octopusDeploySettings.EnvironmentName);
+            var version = _octopusDeployService.FindCurrentlyDeployedVersion(_octopusDeploySettings.ProjectName, _octopusDeploySettings.EnvironmentName);
 
             //Step 2. Get Production Build Number From TC
             var buildNumber = new BasicOctopusToTeamcityMappingStratergy().GetTeamCityBuildNumberFromOctopusReleaseNumber(version.VersionNumber);

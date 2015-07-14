@@ -39,16 +39,19 @@ namespace Sitecore.Octopus.Business.PackageGenerator
 
         private void RemoveUnWantedItems(string sourcePath)
         {
-            foreach (var path in _itemsToDeleteSettings.PathsToRemove)
+            if (_itemsToDeleteSettings.PathsToRemove != null)
             {
-                try
+                foreach (var path in _itemsToDeleteSettings.PathsToRemove)
                 {
-                    Console.WriteLine("About to delete: " + string.Concat(sourcePath, path));
-                    DeleteDirectory(string.Concat(sourcePath, path));
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error delete this folder" + string.Concat(sourcePath, path) + " ------" + ex);
+                    try
+                    {
+                        Console.WriteLine("About to delete: " + string.Concat(sourcePath, path));
+                        DeleteDirectory(string.Concat(sourcePath, path));
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error delete this folder" + string.Concat(sourcePath, path) + " ------" + ex);
+                    }
                 }
             }
         }

@@ -27,7 +27,7 @@ namespace Sitecore.Octopus.Business
         public string CreateReleaseNotes(string currentCommitId)
         {
             //Step 1. Get Current Production Release Number from OD
-            var octopusDeployVersion = _octopusDeployService.FindCurrentlyDeployedProductionVersion(_octopusDeploySettings.ProjectName, _octopusDeploySettings.EnvironmentName);
+            var octopusDeployVersion = _octopusDeployService.FindCurrentlyDeployedVersion(_octopusDeploySettings.ProjectName, _octopusDeploySettings.EnvironmentName);
 
             //Step 2. Get Build Number From TC
             var buildNumber = _octopusToTeamcityMappingStratergy.GetTeamCityBuildNumberFromOctopusReleaseNumber(octopusDeployVersion.VersionNumber);
